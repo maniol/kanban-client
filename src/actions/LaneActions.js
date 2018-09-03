@@ -5,6 +5,7 @@ export const CREATE_LANE = 'CREATE_LANE';
 export const UPDATE_LANE = 'UPDATE_LANE';
 export const DELETE_LANE = 'DELETE_LANE';
 export const FETCH_LANES = 'FETCH_LANES';
+export const EDIT_LANE = 'EDIT_LANE';
 
 //Action Creators
 
@@ -19,11 +20,18 @@ export function createLane(name) {
 	};
 }
 
-export function updateLane(updates, laneId) {
+export function updateLane(lane) {
 	return {
 		type: UPDATE_LANE,
-		laneId,
-		updates
+		laneId: lane._id,
+		lane
+	};
+}
+
+export function editLane(laneId) {
+	return {
+		type: EDIT_LANE,
+		laneId: laneId
 	};
 }
 
