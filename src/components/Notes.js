@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Note from './Note';
-import styles from './Notes.css';
 
 const Notes = ({ notes }) => {
 	return (<ul className="notes">{notes.map((note) =>

@@ -1,3 +1,5 @@
+//to be deleted
+import uuid from 'uuid';
 // Action Types
 
 export const CREATE_NOTE = 'CREATE_NOTE';
@@ -10,14 +12,19 @@ export function createNote(note, laneId) {
 	return {
 		type: CREATE_NOTE,
 		laneId,
-		note
-		},
+		note: {
+			_id: uuid.v4(),//to be deleted
+			...note
+		}
+	}
 };
 
-export function updateNote(note) {
+export function updateNote(updates, noteId, laneId) {
 	return {
 		type: UPDATE_NOTE,
-		note,
+		updates,
+		noteId, 
+		laneId
 	};
 }
 

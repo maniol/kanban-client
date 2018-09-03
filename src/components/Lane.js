@@ -1,27 +1,25 @@
-import React, { PropTypes } from 'react';
-import NotesContainer from '../containers/NotesContainer';
+import React from 'react';
+import PropTypes from 'prop-types';
+import NotesContainer from '../containers/Notes.container';
 
 import styles from './Lane.css';
 
 const Lane = (props) => {
-	const { lane, laneNotes, updateLane, addNote, deleteLane } = props;
-	const laneId = lane._id;
+	const { lane, laneNotes, deleteLane, updateLane, createNote } = props;
 
 	return (
 		<div className={styles.Lane}>
 			<div className={styles.LaneHeader}>
-				<div className={styles.LaneAddNote}>
-					<button onClick={() => addNote({ task: ‘New Note’}, laneId)}>Add Note</button>
-				</div>
 				<h4>{lane.name}</h4>
-				<div className={styles.LaneDelete}>
-					<button onClick={() => deleteLane(laneId)}>Remove Lane</button>
+				<button onClick={() => updateLane({ name: "New Name"}, lane._id)}>Edit title</button>
+				<div className={styles.LaneAddNote}>
+					<button onClick={() => createNote({ task: "New Note"}, lane._id)}>Add Note</button>
 				</div>
 			</div>
-			<NotesContainer
-				notes={laneNotes}
-				laneId={laneId}
-			/>
+			<NotesContainer notes={laneNotes} laneId={lane._id}/>
+			<div className={styles.LaneDelete}>
+				<button onClick={() => deleteLane(lane._id)}>Remove Lane</button>
+			</div>
 		</div>
 	);
 };
@@ -29,9 +27,9 @@ const Lane = (props) => {
 Lane.propTypes = {
 	lane: PropTypes.object,
 	laneNotes: PropTypes.array,
-	addNote: PropTypes.func,
-	updateLane: PropTypes.func,
 	deleteLane: PropTypes.func,
+	updateLane: PropTypes.func,
+	createNote: PropTypes.func,
 };
 
 export default Lane;
