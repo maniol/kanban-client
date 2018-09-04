@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Edit.css';
+import './styles.css';
 
 export default class Edit extends Component {
 	checkEnter = (e) => {
@@ -16,14 +16,14 @@ export default class Edit extends Component {
 		}
 	}
 	renderDelete = () => {
-		return <button className={styles.delete} onClick={this.props.onDelete}>x</button>;
+		return <button className='deleteBtn' onClick={this.props.onDelete}>x</button>;
 	}
 
 	renderValue = () => {
-		const { value, onDelete, onValueClick } = this.props;
+		const { value, onDelete, onValueClick, className } = this.props;
 		return (
 			<div>
-				<span className={styles.value} onClick={onValueClick}>{value}</span>
+				<span className={className} onClick={onValueClick}>{value}</span>
 				{ onDelete ? this.renderDelete() : null }
 			</div>
 			);

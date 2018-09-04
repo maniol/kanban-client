@@ -2,29 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NotesContainer from '../containers/Notes.container';
 import Edit from './Edit'
-
-import styles from './Lane.css';
+import './styles.css';
 
 const Lane = (props) => {
 	const { lane, laneNotes, deleteLane, updateLane, editLane, createNote } = props;
 
 	return (
-		<div className={styles.Lane}>
-			<div className={styles.LaneHeader}>
+		<div className='list'>
+			<div className='listHeader'>
 				<Edit
-					className={styles.LaneName}
+					className='listHeader'
 					editing={lane.editing}
 					value={lane.name}
 					onValueClick={() => editLane(lane._id)}
 					onUpdate={name => updateLane({...lane, name, editing: false})}
+					onDelete={() => deleteLane(lane._id)}
 				/>
-				<div className={styles.LaneAddNote}>
-					<button onClick={() => createNote({ task: "New Note"}, lane._id)}>Add Note</button>
-				</div>
 			</div>
 			<NotesContainer notes={laneNotes} laneId={lane._id}/>
-			<div className={styles.LaneDelete}>
-				<button onClick={() => deleteLane(lane._id)}>Remove Lane</button>
+			<div className='listFooter'>
+					<button className='addNoteBtn' onClick={() => createNote({ task: "New Note"}, lane._id)}>+ Add card</button>
 			</div>
 		</div>
 	);

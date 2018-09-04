@@ -1,10 +1,11 @@
 import React from 'react';
 import LanesContainer from '../containers/Lanes.container';
-//import styles from './App.css';
+import './styles.css';
 
 const App = () => (
-	<div>
-		<h1>Trello Clone</h1>
+	<div className='ui'>
+		<nav className='navbar navbarApp'>Trello Clone</nav>
+		<nav className='navbar navbarBoard'>My board</nav>
 		<LanesContainer />
 	</div>
 );

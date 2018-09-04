@@ -24,10 +24,9 @@ export default function lanes(state = initialState, action) {
 				return lane;
 			});
 		case DELETE_NOTE:
-			console.log('deleting in lanes')
 			return state.map(lane => {
 				if (lane._id === action.laneId) {
-					const notes = lane.notes.filter(note => note._id !== action.noteId);
+					const notes = lane.notes.filter(note => note !== action.noteId);
 					return {...lane, notes };
 				}
 				return lane;

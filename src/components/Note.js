@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Note.css';
+import './styles.css';
 
 const Note = props =>
-	<li className={styles.Note}>{props.children}</li>;
+	<li className='listUlLi'>{props.children}</li>;
 
 Note.propTypes = {
 	children: PropTypes.any,
