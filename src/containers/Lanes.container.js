@@ -10,8 +10,8 @@ class LanesContainer extends Component {
 		this.props.fetchLanes();
 	}
 
-	addLane (name) {
-		this.props.createLane(name);
+	addLane (lane) {
+		this.props.createLane(lane);
 	}
 
 	render() {
@@ -24,9 +24,9 @@ LanesContainer.propTypes = {
 	fetchLanes: PropTypes.func,
 };
 
-function mapStateToProps(store) {
+function mapStateToProps(state) {
 	return {
-		lanes: store.lanes
+		lanes: Object.values(state.lanes)
 	};
 }
 

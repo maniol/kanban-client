@@ -16,5 +16,4 @@ Lanes.propTypes = {
 	lanes: PropTypes.array,
 };
 
-
 export default Lanes;

@@ -15,13 +15,8 @@ const Notes = ({ notes, laneId, editNote, deleteNote, updateNote }) => {
 			<Edit
 				editing={note.editing}
 				value={note.task}
-				onValueClick={() => editNote(note._id)}
-				onUpdate={(task) => updateNote({
-					...note,
-					task,
-					editing: false
-				}, laneId
-				)}
+				onValueClick={() => editNote(note._id, laneId)}
+				onUpdate={(task) => updateNote(note._id, laneId, task)}
 				onDelete={() => deleteNote(note._id, laneId)}
 				/>
 		</Note>

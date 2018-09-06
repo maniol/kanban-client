@@ -7,9 +7,8 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
 import App from './components/App';
-//import './index.css';
 
-const store = createStore(
+let store = createStore(
 	reducers,
 	applyMiddleware(thunk)
 	);

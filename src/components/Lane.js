@@ -6,7 +6,6 @@ import './styles.css';
 
 const Lane = (props) => {
 	const { lane, laneNotes, deleteLane, updateLane, editLane, createNote } = props;
-
 	return (
 		<div className='list'>
 			<div className='listHeader'>
@@ -15,7 +14,7 @@ const Lane = (props) => {
 					editing={lane.editing}
 					value={lane.name}
 					onValueClick={() => editLane(lane._id)}
-					onUpdate={name => updateLane({...lane, name, editing: false})}
+					onUpdate={name => updateLane(lane._id, name)}
 					onDelete={() => deleteLane(lane._id)}
 				/>
 			</div>
