@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Notes from '../components/Notes';
-import * as noteActions from '../actions/NoteActions';
+import { updateNote, editNote, deleteNote, moveWithinLane } from '../actions/NoteActions';
 
 
 /*const mapDispatchToProps = dispatch => ({
@@ -8,12 +8,17 @@ import * as noteActions from '../actions/NoteActions';
 	updateNote: (updates, noteId, laneId) => dispatch(noteActions.updateNote(updates, noteId, laneId)),
 	createNote: (note, laneId) => dispatch(noteActions.createNote(note, laneId)),
 	editNote: (noteId) => dispatch(noteActions.editNote(noteId))
-});*/
+});
 
-const mapDispatchToProps = {
+/*const mapDispatchToProps = {
 	...noteActions
-}
-
+}*/
+const mapDispatchToProps = {
+ 	onValueClick: editNote,
+ 	onUpdate: updateNote,
+ 	onDelete: deleteNote,
+ 	moveWithinLane,
+};
 
 export default connect(
 	null,

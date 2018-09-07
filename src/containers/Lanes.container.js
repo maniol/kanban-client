@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchLanes, createLane } from '../actions/LaneActions';
 import Lanes from '../components/Lanes';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { compose } from 'redux';
 
 class LanesContainer extends Component {
 
@@ -41,4 +44,7 @@ function mapDispatchToProps(dispatch) {
 	}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LanesContainer);
+export default compose(
+	connect(mapStateToProps, mapDispatchToProps),
+	DragDropContext(HTML5Backend)
+	)(LanesContainer);

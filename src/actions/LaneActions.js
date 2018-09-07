@@ -9,6 +9,8 @@ export const UPDATE_LANE = 'UPDATE_LANE';
 export const DELETE_LANE = 'DELETE_LANE';
 export const FETCH_LANES = 'FETCH_LANES';
 export const EDIT_LANE = 'EDIT_LANE';
+export const MOVE_BETWEEN_LANES = 'MOVE_BETWEEN_LANES';
+
 
 //Action Creators
 export function createLane(lane) {
@@ -110,7 +112,7 @@ export function deleteLane(laneId) {
 			credentials: 'same-origin'
 		})
 		.then(response => response.json().then(body => ({ response, body})))
-		.then(({response, body}) => {
+		.then(({ response, body }) => {
 			if(!response.status === 200) {
 				const error = new Error(body.error.mesage)
 				error.response = response
@@ -133,8 +135,8 @@ export function fetchLanes() {
 			headers: {'Content-Type': 'application/json'},
 			credentials: 'same-origin'
 		})
-		.then(response => response.json().then(body => ({response, body})))
-		.then(({response, body}) => {
+		.then(response => response.json().then(body => ({ response, body })))
+		.then(({ response, body }) => {
 			if(!response.ok) {
 				const error = new Error(body.error.message)
 				error.response = response
@@ -151,4 +153,14 @@ export function fetchLanes() {
 			}
 		})
 	}
+}
+
+
+export function moveBetweenLanes(targetLaneId, noteId, sourceLaneId) {
+	return {
+		type: 'MOVE_BETWEEN_LANES',
+		targetLaneId,
+		noteId,
+		sourceLaneId
+	};
 }

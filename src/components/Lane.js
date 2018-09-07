@@ -5,8 +5,8 @@ import Edit from './Edit'
 import './styles.css';
 
 const Lane = (props) => {
-	const { lane, laneNotes, deleteLane, updateLane, editLane, createNote } = props;
-	return (
+	const { connectDropTarget, lane, laneNotes, deleteLane, updateLane, editLane, createNote } = props;
+	return connectDropTarget(
 		<div className='list'>
 			<div className='listHeader'>
 				<Edit

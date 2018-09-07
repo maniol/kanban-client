@@ -5,6 +5,7 @@ export const CREATE_NOTE = 'CREATE_NOTE';
 export const UPDATE_NOTE = 'UPDATE_NOTE';
 export const EDIT_NOTE = 'EDIT_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
+export const MOVE_WITHIN_LANE = 'MOVE_WITHIN_LANE';
 
 //Action Creators
 export function createNote(note, laneId) {
@@ -113,7 +114,6 @@ export function deleteNote(noteId, laneId) {
 				error.response = response
 				throw error
 			} else {
-				console.log(noteId)
 				dispatch({
 					type: 'DELETE_NOTE',
 					laneId,
@@ -122,4 +122,13 @@ export function deleteNote(noteId, laneId) {
 			}
 		});
 	}
+}
+
+export function moveWithinLane(laneId, targetId, sourceId) {
+	return {
+		type: 'MOVE_WITHIN_LANE',
+		laneId,
+		targetId,
+		sourceId
+	};
 }
