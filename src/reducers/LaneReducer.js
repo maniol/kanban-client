@@ -4,15 +4,6 @@ import { CREATE_NOTE, DELETE_NOTE, MOVE_WITHIN_LANE } from '../actions/NoteActio
 import omit from 'lodash/omit';
 
 
-function moveNotes(array, sourceNoteId, targetNoteId) {
-	const sourceIndex = array.indexOf(sourceNoteId);
-	const targetIndex = array.indexOf(targetNoteId);
-	const arrayCopy = [...array];
-
-	arrayCopy.splice(targetIndex, 0, arrayCopy.splice(sourceIndex, 1)[0]);
-	return arrayCopy;
-}
-
 const initialState = {};
 
 export default function lanes(state = initialState, action) {
@@ -41,11 +32,16 @@ export default function lanes(state = initialState, action) {
 		}
 		case FETCH_LANES:
 			return {...action.lanes };
-		case MOVE_WITHIN_LANE:
+		/*case MOVE_WITHIN_LANE:
 			const newLane = { ...state[action.laneId] };
 			newLane.notes = moveNotes(newLane.notes, action.sourceId, action.targetId);
+			return { ...state, [action.laneId]: newLane };*/
+		case MOVE_WITHIN_LANE:
+			const newLane = { ...state[action.laneId] };
+			newLane.notes = action.notes.map(note => note._id);
 			return { ...state, [action.laneId]: newLane };
 		case MOVE_BETWEEN_LANES:
+			console.log('move between lanes')
 			const targetLane = { ...state[action.targetLaneId] };
 			targetLane.notes = [...targetLane.notes, action.noteId];
 			const sourceLane = { ...state[action.sourceLaneId] };

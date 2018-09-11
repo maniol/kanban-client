@@ -8,17 +8,23 @@ import ItemTypes from '../components/itemTypes';
 
 
 const noteTarget = {
-	hover(targetProps, monitor) {
-	const sourceProps = monitor.getItem();
-	const { id: noteId, laneId: sourceLaneId } = sourceProps;
-	console.log(targetProps)
-	targetProps.moveBetweenLanes(
-		targetProps.lane._id,
-		noteId,
-		sourceLaneId,
-		);
-	},
-};
+	drop(targetProps, monitor) {
+		const sourceProps = monitor.getItem();
+		const { id: noteId, laneId: sourceLaneId } = sourceProps;
+		console.log('sourceProps',sourceProps)
+		console.log('targetProps',targetProps)
+		if(sourceLaneId !== targetProps.lane._id) {
+			targetProps.moveBetweenLanes(
+				//targetProps.lane, //already updated format store
+				targetProps.lane._id,
+				noteId,
+				//sourceProps.lane, //store format
+				sourceLaneId,
+				//sourceProps.note
+				);
+		}
+	}
+}
 const mapStateToProps = (state, props) => {
 	return {
 		laneNotes: props.lane.notes.map(noteId => state.notes[noteId]),

@@ -13,12 +13,12 @@ import { updateNote, editNote, deleteNote, moveWithinLane } from '../actions/Not
 /*const mapDispatchToProps = {
 	...noteActions
 }*/
-const mapDispatchToProps = {
- 	onValueClick: editNote,
- 	onUpdate: updateNote,
- 	onDelete: deleteNote,
- 	moveWithinLane,
-};
+const mapDispatchToProps = dispatch => ( {
+ 	editNote: (noteId, laneId) => dispatch(editNote(noteId, laneId)),
+ 	updateNote: (noteId, laneId, task) => dispatch(updateNote(noteId, laneId, task)),
+ 	deleteNote: (noteId, laneId) => dispatch(deleteNote(noteId, laneId)),
+ 	moveWithinLane: (laneId, notes, targetId, sourceId) => dispatch(moveWithinLane(laneId, notes, targetId, sourceId))
+} );
 
 export default connect(
 	null,

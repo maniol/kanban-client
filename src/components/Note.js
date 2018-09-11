@@ -27,9 +27,12 @@ class Note extends React.Component {
 
 const noteSource = {
 	beginDrag(props) {
+		const draggedNote = props.notes.filter(n => n._id === props.id)
 		return {
 			id: props.id,
-			laneId: props.laneId
+			laneId: props.laneId,
+			lane: props.lane,
+			note: draggedNote[0] //filter returns array
 		};
 	},
 	isDragging(props, monitor) {
@@ -38,10 +41,10 @@ const noteSource = {
 };
 
 const noteTarget = {
-	hover(targetProps, monitor) {
-	const sourceProps = monitor.getItem();
-	if (targetProps.id !== sourceProps.id) {
-		targetProps.moveWithinLane(targetProps.laneId, targetProps.id, sourceProps.id)
+	drop(targetProps, monitor) {
+		const sourceProps = monitor.getItem();
+		if (targetProps.id !== sourceProps.id) {
+			targetProps.moveWithinLane(targetProps.laneId, targetProps.notes, targetProps.id, sourceProps.id)
 		}
 	}
 };

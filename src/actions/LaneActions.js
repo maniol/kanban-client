@@ -164,3 +164,65 @@ export function moveBetweenLanes(targetLaneId, noteId, sourceLaneId) {
 		sourceLaneId
 	};
 }
+
+
+
+/*export function moveBetweenLanes(targetLane, targetLaneId, noteId, sourceLane, sourceLaneId, note) {
+	return function(dispatch) {
+		console.log(note)
+		const addedNote = targetLane.notes.push(note)
+		console.log(targetLane.notes)
+		const deletedNote = sourceLane.notes.filter(note => note._id === noteId)
+		const addedData = {
+			notes: addedNote
+		}
+		const deletedData = {
+			notes: deletedNote
+		}
+		return fetch(`/lanes/${targetLaneId}`,
+			{
+			method: 'PUT',
+			body: JSON.stringify(addedData),
+			headers: {'Content-Type': 'application/json'},
+			credentials: 'same-origin'
+		})
+		.then(response => response.json().then(body => ({ response, body})))
+		.then(({response, body}) => {
+			console.log('body',body)
+			if(!response.ok) {
+				const error = new Error(body.error.message)
+				error.response = response
+				throw error
+			} else {
+				dispatch({
+					type: 'MOVE_BETWEEN_LANES',
+					targetLaneId,
+					noteId,
+					sourceLaneId
+				});
+			}
+		});
+		return fetch(`/lanes/${sourceLaneId}`,
+			{
+			method: 'PUT',
+			body: JSON.stringify(deletedData),
+			headers: {'Content-Type': 'application/json'},
+			credentials: 'same-origin'
+			})
+		.then(response => response.json().then(body => ({ response, body})))
+		.then(({response, body}) => {
+			if(!response.ok) {
+				const error = new Error(body.error.message)
+				error.response = response
+				throw error
+			} else {
+				dispatch({
+					type: 'MOVE_BETWEEN_LANES',
+					targetLaneId,
+					noteId,
+					sourceLaneId
+				});
+			}
+		});
+	}
+}*/

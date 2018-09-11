@@ -18,7 +18,7 @@ const Lane = (props) => {
 					onDelete={() => deleteLane(lane._id)}
 				/>
 			</div>
-			<NotesContainer notes={laneNotes} laneId={lane._id}/>
+			<NotesContainer notes={laneNotes} laneId={lane._id} lane={lane}/>
 			<div className='listFooter'>
 					<button className='addNoteBtn' onClick={() => createNote({ task: "New Note"}, lane._id)}>+ Add card</button>
 			</div>
